@@ -9,12 +9,12 @@ namespace EnjoyCodes.ViewComponentsLibrary.ViewComponents
 {
     public class Pager : ViewComponent
     {
-        public IViewComponentResult Invoke(int pageSize, int currentPage, int totalItemCount, object parameters)
+        public IViewComponentResult Invoke(int pageSize, int currentPage, int totalItemCount, object urlParameters)
         {
             var paras = null as Dictionary<string, string>;
             try
             {
-                paras = JsonConvert.DeserializeObject<Dictionary<string, string>>(JsonConvert.SerializeObject(parameters));
+                paras = JsonConvert.DeserializeObject<Dictionary<string, string>>(JsonConvert.SerializeObject(urlParameters));
             }
             catch
             { }

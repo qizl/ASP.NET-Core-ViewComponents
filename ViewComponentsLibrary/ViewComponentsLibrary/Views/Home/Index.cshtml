@@ -12,7 +12,7 @@
 </style>
 <h3>Pager:</h3>
 <code>
-    <pre>@@await Component.InvokeAsync("Pager", new { pageSize = ViewBag.PageSize, currentPage = ViewBag.CurrentPage, totalItemCount = ViewBag.TotalItemCount, parameters = new { ViewBag.KeyWords } })
+    <pre>@@await Component.InvokeAsync("Pager", new { pageSize = ViewBag.PageSize, currentPage = ViewBag.CurrentPage, totalItemCount = ViewBag.TotalItemCount, urlParameters = new { ViewBag.KeyWords } })
     </pre>
 </code>
 @await Component.InvokeAsync("Pager", new { pageSize = ViewBag.PageSize, currentPage = ViewBag.CurrentPage, totalItemCount = ViewBag.TotalItemCount, parameters = new { ViewBag.KeyWords } })
