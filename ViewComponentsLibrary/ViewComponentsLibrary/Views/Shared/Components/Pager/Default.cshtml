@@ -1,0 +1,37 @@
+﻿@model List<EnjoyCodes.ViewComponentsLibrary.ViewComponents.Pager.Link>
+
+@{
+    var i = 0;
+    foreach (var paginationLink in Model)
+    {
+        var idStr = string.Empty;
+        if (++i == 1)
+        {
+            idStr = " first";
+        }
+        else if (i == Model.Count)
+        {
+            idStr = " last";
+        }
+
+        if (paginationLink.Active)
+        {
+            if (paginationLink.IsCurrent)
+            {
+                <span class="current" @idStr>@paginationLink.DisplayText</span>
+            }
+            else if (!paginationLink.PageIndex.HasValue)
+            {
+                <span class="pager_num" @idStr>@paginationLink.DisplayText</span>
+            }
+            else
+            {
+                <a class="pager_true" @idStr href="@paginationLink.UrlParameters">@paginationLink.DisplayText</a>
+            }
+        }
+        else
+        {
+            <span class="pager_false" @idStr disabled="disabled">@paginationLink.DisplayText</span>
+        }
+    }
+}

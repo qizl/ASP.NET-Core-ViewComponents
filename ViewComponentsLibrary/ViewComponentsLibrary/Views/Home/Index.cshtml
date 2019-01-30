@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    pre {
+        font-family: Consolas;
+        font-size: 16px;
+        color: gainsboro;
+        background: #1e1e1e;
+        white-space: pre-wrap;
+    }
+</style>
+<h3>Pager:</h3>
+<code>
+    <pre>@@await Component.InvokeAsync("Pager", new { pageSize = ViewBag.PageSize, currentPage = ViewBag.CurrentPage, totalItemCount = ViewBag.TotalItemCount, paras = new Dictionary<string, object>() { ["keyWords"] = ViewBag.keyWords } })
+    </pre>
+</code>
+@await Component.InvokeAsync("Pager", new { pageSize = ViewBag.PageSize, currentPage = ViewBag.CurrentPage, totalItemCount = ViewBag.TotalItemCount, paras = new Dictionary<string, object>() { ["keyWords"] = ViewBag.KSeyWords } })
+<span class="total">搜索到相关结果 @ViewBag.TotalItemCount 个</span>
