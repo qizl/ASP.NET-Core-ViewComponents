@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,16 @@ namespace EnjoyCodes.ViewComponentsLibrary.ViewComponents
 {
     public class Pager : ViewComponent
     {
-        public IViewComponentResult Invoke(int pageSize, int currentPage, int totalItemCount, Dictionary<string, object> paras)
+        public IViewComponentResult Invoke(int pageSize, int currentPage, int totalItemCount, object parameters)
         {
+            var paras = null as Dictionary<string, string>;
+            try
+            {
+                paras = JsonConvert.DeserializeObject<Dictionary<string, string>>(JsonConvert.SerializeObject(parameters));
+            }
+            catch
+            { }
+
             var links = new List<Link>();
 
             var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
@@ -79,17 +88,17 @@ namespace EnjoyCodes.ViewComponentsLibrary.ViewComponents
             }
 
             // Next
-            links.Add(currentPage < pageCount ? 
-                new Link { Active = true, PageIndex = currentPage + 1, DisplayText = "下页", UrlParameters = this.generateUrlParameters(currentPage + 1,paras) } : 
+            links.Add(currentPage < pageCount ?
+                new Link { Active = true, PageIndex = currentPage + 1, DisplayText = "下页", UrlParameters = this.generateUrlParameters(currentPage + 1, paras) } :
                 new Link { Active = false, DisplayText = "下页" });
 
             return View(links);
         }
 
-        private string generateUrlParameters(int pageNumber, Dictionary<string, object> paras)
+        private string generateUrlParameters(int pageNumber, Dictionary<string, string> paras)
         {
             var paramUrl = new StringBuilder($"?page={pageNumber}");
-            if (paras.Count > 0)
+            if (paras?.Count > 0)
             {
                 paramUrl.Append("&");
                 paramUrl.Append(string.Join("&", paras.Select(m => $"{m.Key}={m.Value}")));
