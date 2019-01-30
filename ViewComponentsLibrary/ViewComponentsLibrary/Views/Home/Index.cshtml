@@ -15,5 +15,5 @@
     <pre>@@await Component.InvokeAsync("Pager", new { pageSize = ViewBag.PageSize, currentPage = ViewBag.CurrentPage, totalItemCount = ViewBag.TotalItemCount, urlParameters = new { ViewBag.KeyWords } })
     </pre>
 </code>
-@await Component.InvokeAsync("Pager", new { pageSize = ViewBag.PageSize, currentPage = ViewBag.CurrentPage, totalItemCount = ViewBag.TotalItemCount, parameters = new { ViewBag.KeyWords } })
+@await Component.InvokeAsync("Pager", new { pageSize = ViewBag.PageSize, currentPage = ViewBag.CurrentPage, totalItemCount = ViewBag.TotalItemCount, urlParameters = new { ViewBag.KeyWords } })
 <span class="total">搜索到相关结果 @ViewBag.TotalItemCount 个</span>
